@@ -1,3 +1,5 @@
-*.cube text eol=lf
-*.py   text eol=lf
-*.md   text eol=lf
+*.cube    text eol=lf
+*.py      text eol=lf
+*.md      text eol=lf
+*.xmp     text eol=lf
+*.costyle -text
