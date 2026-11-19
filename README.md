@@ -13,7 +13,7 @@ Six 3D LUTs (`.cube`, 33×33×33) that give raw files in [RapidRAW](https://gith
 
 ## Install
 
-Copy the files from [`luts/`](luts) into RapidRAW's LUT folder. They then appear in the editor's LUT list.
+Download `luts-e-pl7-v1.0.0.zip` from the [latest release](../../releases/latest), or take the files from [`luts/`](luts). Copy the six `.cube` files into RapidRAW's LUT folder. They then appear in the editor's LUT list.
 
 | OS | Folder |
 |---|---|
