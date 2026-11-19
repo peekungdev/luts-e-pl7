@@ -2,6 +2,8 @@
 
 Six 3D LUTs (`.cube`, 33×33×33) that give raw files in [RapidRAW](https://github.com/CyberTimon/RapidRAW) the look of Fujifilm's **Classic Chrome** film simulation. Four variants add Fuji's **Color Chrome Effect** and **Color Chrome FX Blue** settings, and two apply those effects on their own. They were made for, and checked on, raw files from an Olympus PEN E-PL7.
 
+They are standard `.cube` files, so they also work in **Adobe Lightroom**, **Photoshop** and other photo editors that load 3D LUTs; see [Lightroom and other photo editors](#lightroom-and-other-photo-editors).
+
 | File | What it does |
 |---|---|
 | `Fuji Classic Chrome (E-PL7).cube` | Classic Chrome on its own |
@@ -28,6 +30,29 @@ Download `luts-e-pl7-v1.0.0.zip` from the [latest release](../../releases/latest
 3. Use the LUT intensity slider to blend the look back with the plain AgX rendering.
 
 Classic Chrome is darker and lower in saturation than RapidRAW's default rendering, with firmer shadows. That is the intended look.
+
+## Lightroom and other photo editors
+
+The files are ordinary 3D LUTs (sRGB in, sRGB out), so any editor that reads `.cube` LUTs can use them:
+
+- **Adobe Lightroom / Lightroom Classic.** Lightroom can't load a `.cube` file directly. Turn each LUT into a Camera Raw profile first; this needs Photoshop:
+  1. In Photoshop, open a raw file in Camera Raw.
+  2. In the Presets panel, hold **Alt** (**Option** on a Mac) and click the *Create Preset* button. The dialog opens as **Create Profile**.
+  3. Tick **Color Lookup Table** and load the `.cube` file. Set its space to **sRGB**, then give the profile a name and group and save it.
+  4. Restart Lightroom. The profile is in the Profile Browser (Develop › Basic › Profile) under the group you chose, with an Amount slider.
+- **Adobe Photoshop.** Layer › New Adjustment Layer › Color Lookup, then *3DLUT File › Load 3D LUT…*
+- **Affinity Photo.** A LUT adjustment layer.
+- **darktable.** The *lut 3D* module (set the LUT folder in Preferences › Processing first).
+- **DaVinci Resolve**, and other editors with `.cube` support.
+
+Capture One and RawTherapee can't load `.cube` files directly. Capture One needs the LUT converted to an ICC profile, and RawTherapee only reads HaldCLUT PNGs.
+
+**Expect an approximation outside RapidRAW.** The LUTs were calibrated against RapidRAW's AgX rendering. Other editors feed the LUT a different rendering, so the result drifts a little from true Classic Chrome. This was tested on the same nine E-PL7 raws with a typical contrasty default rendering, standing in for Lightroom's *Adobe Color*:
+
+- At full strength, the result came out slightly darker than the Classic Chrome reference, with about 9/255 mean error. In RapidRAW the error is 0.3/255.
+- At 60% strength, the error dropped to about 6/255.
+
+Start at **60–70% strength** (the profile's Amount slider in Lightroom, or layer opacity in Photoshop) and adjust by eye.
 
 ## How they were made
 
@@ -65,4 +90,4 @@ The table does not depend on the camera. RapidRAW converts each camera's colour 
 ## Licence and credits
 
 - The Classic Chrome data is derived from Stuart Sowerby's Fuji film simulation profiles ([sowerby.me](https://blog.sowerby.me/fuji-film-simulation-profiles/)), as distributed in [cedeber/hald-clut](https://github.com/cedeber/hald-clut) under GPL-3.0. These LUTs and scripts are therefore released under the [GNU GPL v3.0](LICENSE).
-- Not affiliated with or endorsed by Fujifilm, OM Digital Solutions or Olympus. Classic Chrome and Color Chrome are Fujifilm's names for their film simulations.
+- Not affiliated with or endorsed by Fujifilm, OM Digital Solutions, Olympus or Adobe. Classic Chrome and Color Chrome are Fujifilm's names for their film simulations. Lightroom and Photoshop are Adobe trademarks.
